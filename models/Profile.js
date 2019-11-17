@@ -5,11 +5,8 @@ const ProfileSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user'
   },
-  company: {
-    type: String
-  },
-  website: {
-    type: String
+  workout_types: {
+    type: [String]
   },
   location: {
     type: String
@@ -21,10 +18,10 @@ const ProfileSchema = new mongoose.Schema({
     youtube: {
       type: String
     },
-    twitter: {
+    facebook: {
       type: String
     },
-    facebook: {
+    twitter: {
       type: String
     },
     instagram: {
