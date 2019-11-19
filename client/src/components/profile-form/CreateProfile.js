@@ -48,7 +48,7 @@ const CreateProfile = ({ createProfile, history }) => {
         <div className='form-group'>
           <input
             type='text'
-            placeholder='* Workout Types'
+            placeholder='Workout Types'
             name='workouttypes'
             value={workouttypes}
             onChange={e => onChange(e)}
