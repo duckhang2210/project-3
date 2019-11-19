@@ -33,7 +33,7 @@ router.get('/me', auth, async (req, res) => {
 // #access  Private (token needed)
 router.post('/', auth, async (req, res) => {
   const {
-    workout_types,
+    workouttypes,
     location,
     bio,
     youtube,
@@ -45,10 +45,10 @@ router.post('/', auth, async (req, res) => {
   //Build profile Object
   const profileFields = {};
   profileFields.user = req.user.id;
-  if (workout_types) {
-    profileFields.workout_types = workout_types
+  if (workouttypes) {
+    profileFields.workouttypes = workouttypes
       .split(',')
-      .map(workout_type => workout_type.trim());
+      .map(workouttype => workouttype.trim());
   }
   if (location) profileFields.location = location;
   if (bio) profileFields.bio = bio;

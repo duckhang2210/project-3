@@ -5,7 +5,7 @@ const ProfileSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user'
   },
-  workout_types: {
+  workouttypes: {
     type: [String]
   },
   location: {
