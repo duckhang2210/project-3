@@ -35,7 +35,7 @@ const EditProfile = ({
       twitter: loading || !profile.social ? '' : profile.social.twitter,
       instagram: loading || !profile.social ? '' : profile.social.instagram
     });
-  }, [loading]);
+  }, [loading, getCurrentProfile]);
 
   const {
     workouttypes,

@@ -14,7 +14,11 @@ const ProfileItem = ({
       <img src={avatar} alt='' className='round-img' />
       <div>
         <h2>{name}</h2>
-        <p>{workouttypes.toString().replace(/,/g, ', ')}</p>
+        <p className='my-1'>
+          {workouttypes.length && (
+            <span>{workouttypes.toString().replace(/,/g, ', ')}</span>
+          )}
+        </p>
         <p className='my-1'>{location && <span>{location}</span>}</p>
         <Link to={`/profile/${_id}`} className='btn btn-primary'>
           View Profile
