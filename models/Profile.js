@@ -6,7 +6,8 @@ const ProfileSchema = new mongoose.Schema({
     ref: 'user'
   },
   workouttypes: {
-    type: [String]
+    type: [String],
+    required: true
   },
   location: {
     type: String
