@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import PostItem from './PostItem';
@@ -10,11 +9,12 @@ const PostsById = ({
   getPostByUserId,
   post: { posts, loading },
   auth,
-  match
+  profile: { profile }
 }) => {
+  console.log(profile.user._id);
   useEffect(() => {
-    getPostByUserId(auth.user._id);
-  }, [getPostByUserId]);
+    getPostByUserId(profile.user._id);
+  }, [getPostByUserId, profile.user._id]);
 
   return loading ? (
     <Spinner />
@@ -33,12 +33,14 @@ const PostsById = ({
 PostsById.propTypes = {
   getPostByUserId: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   post: state.post,
-  auth: state.auth
+  auth: state.auth,
+  profile: state.profile
 });
 
 export default connect(mapStateToProps, { getPostByUserId })(PostsById);

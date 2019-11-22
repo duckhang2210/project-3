@@ -10,6 +10,7 @@ import PostItem from '../posts/PostItem';
 
 const Profile = ({
   getProfileById,
+  getPostByUserId,
   profile: { profile, loading },
   post: { posts },
   auth,
@@ -20,7 +21,7 @@ const Profile = ({
   }, [getProfileById, match.params.id]);
   useEffect(() => {
     getPostByUserId(match.params.id);
-  }, [getPostByUserId]);
+  }, [getPostByUserId, match.params.id]);
   {
     if (
       auth.isAuthenticated &&
@@ -60,7 +61,7 @@ Profile.propTypes = {
   getPostByUserId: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
-  post: PropTypes.func.isRequired
+  post: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
