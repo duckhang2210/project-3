@@ -5,17 +5,22 @@ import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import ProfileTop from './ProfileTop';
 import { getProfileById } from '../../actions/profile';
+import { getPostByUserId } from '../../actions/post';
+import PostItem from '../posts/PostItem';
 
 const Profile = ({
   getProfileById,
   profile: { profile, loading },
+  post: { posts },
   auth,
   match
 }) => {
   useEffect(() => {
     getProfileById(match.params.id);
   }, [getProfileById, match.params.id]);
-
+  useEffect(() => {
+    getPostByUserId(match.params.id);
+  }, [getPostByUserId]);
   {
     if (
       auth.isAuthenticated &&
@@ -37,6 +42,12 @@ const Profile = ({
             <div className='profile-grid my-1'>
               <ProfileTop profile={profile} />
             </div>
+            <h1 className='large text-primary'>Posts</h1>
+            <div className='posts'>
+              {posts.map(post => (
+                <PostItem key={post._id} post={post} />
+              ))}
+            </div>
           </Fragment>
         )}
       </Fragment>
@@ -46,13 +57,18 @@ const Profile = ({
 
 Profile.propTypes = {
   getProfileById: PropTypes.func.isRequired,
+  getPostByUserId: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  post: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   profile: state.profile,
-  auth: state.auth
+  auth: state.auth,
+  post: state.post
 });
 
-export default connect(mapStateToProps, { getProfileById })(Profile);
+export default connect(mapStateToProps, { getProfileById, getPostByUserId })(
+  Profile
+);

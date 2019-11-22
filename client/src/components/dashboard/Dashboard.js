@@ -4,17 +4,17 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import DashboardActions from './DashboardActions';
+import PostForm from '../posts/PostForm';
 import ProfileTop from '../profile/ProfileTop';
 import { getCurrentProfile, deleteAccount } from '../../actions/profile';
-import PostItem from '../posts/PostItem';
-import PostForm from '../posts/PostForm';
-import { getPosts } from '../../actions/post';
+import PostsById from '../posts/PostsById';
 
 const Dashboard = ({
   getCurrentProfile,
   deleteAccount,
   auth: { user },
-  profile: { profile, loading }
+  profile: { profile, loading },
+  post: { posts }
 }) => {
   useEffect(() => {
     getCurrentProfile();
@@ -44,6 +44,9 @@ const Dashboard = ({
         </Fragment>
       )}
       <PostForm />
+      <div className='posts'>
+        <PostsById></PostsById>
+      </div>
     </Fragment>
   );
 };
@@ -52,14 +55,17 @@ Dashboard.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
   deleteAccount: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired,
+  post: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  profile: state.profile
+  profile: state.profile,
+  post: state.post
 });
 
-export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(
-  Dashboard
-);
+export default connect(mapStateToProps, {
+  getCurrentProfile,
+  deleteAccount
+})(Dashboard);
