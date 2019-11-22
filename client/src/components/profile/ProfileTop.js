@@ -11,14 +11,18 @@ const ProfileTop = ({
   }
 }) => {
   return (
-    <div className='profile-top bg-primary p-2'>
+    <div className='profile-top bg-light'>
       <img className='round-img my-1' src={avatar} alt='' />
-      <h1 className='large'>{name}</h1>
+      <div className='my-1'>
+        <h1>{name}</h1>
+        <q>{bio}</q>
+      </div>
+
       <i class='fas fa-heartbeat'></i>
       <p>{workouttypes.toString().replace(/,/g, ', ')}</p>
       <i className='fas fa-map-marker-alt fa-1x' />
       <p>{location && <span>{location}</span>}</p>
-      <q>{bio}</q>
+
       <div className='icons my-1'>
         {social && social.twitter && (
           <a href={social.twitter} target='_blank' rel='noopener noreferrer'>

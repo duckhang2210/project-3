@@ -4,7 +4,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import DashboardActions from './DashboardActions';
+import ProfileTop from '../profile/ProfileTop';
 import { getCurrentProfile, deleteAccount } from '../../actions/profile';
+import PostItem from '../posts/PostItem';
+import PostForm from '../posts/PostForm';
+import { getPosts } from '../../actions/post';
 
 const Dashboard = ({
   getCurrentProfile,
@@ -21,13 +25,10 @@ const Dashboard = ({
   ) : (
     <Fragment>
       <h1 className='large text-primary'>Dashboard</h1>
-      <p className='lead'>
-        <i className='fas fa-user'></i>
-        Welcome {user && user.name}
-      </p>
       {profile !== null ? (
         <Fragment>
           <DashboardActions />
+          <ProfileTop profile={profile} />
           <div className='my-2'>
             <button className='btn btn-danger' onClick={() => deleteAccount()}>
               <i className='fas fa-user-minus'></i> Delete my account
@@ -42,6 +43,7 @@ const Dashboard = ({
           </Link>
         </Fragment>
       )}
+      <PostForm />
     </Fragment>
   );
 };

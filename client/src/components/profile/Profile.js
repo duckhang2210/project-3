@@ -30,7 +30,7 @@ const Profile = ({
           <Spinner />
         ) : (
           <Fragment>
-            <Link to='/profiles' className='btn btn-light'>
+            <Link to='/profiles' className='btn btn-gradient'>
               Back to users
             </Link>
 

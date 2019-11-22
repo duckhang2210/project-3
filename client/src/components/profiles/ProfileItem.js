@@ -14,14 +14,23 @@ const ProfileItem = ({
       <img src={avatar} alt='' className='round-img' />
       <div>
         <h2>{name}</h2>
-        <p className='my-1'>
-          {workouttypes.length && (
+
+        {workouttypes.length && (
+          <p>
+            <i class='fas fa-heartbeat'></i>{' '}
             <span>{workouttypes.toString().replace(/,/g, ', ')}</span>
-          )}
-        </p>
-        <p className='my-1'>{location && <span>{location}</span>}</p>
+          </p>
+        )}
+
+        {location && (
+          <p>
+            <i class='fas fa-map-marker-alt'></i> <span>{location}</span>
+          </p>
+        )}
+      </div>
+      <div>
         <Link to={`/profile/${_id}`} className='btn btn-primary'>
-          View Profile
+          View <span className='hide-sm'>Profile</span>
         </Link>
       </div>
     </div>

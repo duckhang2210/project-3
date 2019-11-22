@@ -1,6 +1,6 @@
 /* Global Styles */
 :root {
-  --primary-color: #17a2b8;
+  --primary-color: #0e818a;
   --dark-color: #343a40;
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
@@ -17,7 +17,7 @@ body {
   font-family: 'Raleway', sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  background-color: #fff;
+  background-color: rgba(226, 232, 235, 0.329);
   color: #333;
 }
 
@@ -163,13 +163,21 @@ img {
   background: var(--primary-color);
   color: #fff;
 }
+.btn-gradient,
+.bg-gradient,
+.badge-gradient,
+.alert-gradient {
+  background: linear-gradient(to right, #536976, #292e49);
+  color: white;
+}
 
 .btn-light,
 .bg-light,
 .badge-light,
 .alert-light {
-  background: var(--light-color);
+  background: rgba(255, 255, 255, 0.849);
   color: #333;
+  border: 1px #292e49;
 }
 
 .btn-dark,
@@ -216,6 +224,7 @@ img {
 
 .round-img {
   border-radius: 50%;
+  width: 170px;
 }
 
 .line {
@@ -308,8 +317,9 @@ button {
   z-index: 1;
   width: 100%;
   top: 0;
-  border-bottom: solid 1px var(--primary-color);
+  border-bottom: solid 1px var(--dark-color);
   opacity: 0.9;
+  background: linear-gradient(to right, #536976, #292e49);
 }
 
 .navbar ul {
@@ -381,7 +391,7 @@ button {
 }
 
 .profile-top img {
-  width: 250px;
+  width: 200px;
 }
 
 .profile-top .icons a {
@@ -489,7 +499,7 @@ button {
 }
 
 /* Mobile Styles */
-@media (max-width: 700px) {
+@media (max-width: 750px) {
   .container {
     margin-top: 8rem;
   }
@@ -531,10 +541,6 @@ button {
   }
 
   /* Profiles Page */
-  .profile {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
 
   .profile ul {
     display: none;
@@ -544,7 +550,7 @@ button {
 
   .profile-top img,
   .profile img {
-    width: 200px;
+    width: 135px;
     margin: auto;
   }
 
