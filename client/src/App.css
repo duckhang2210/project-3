@@ -17,7 +17,7 @@ body {
   font-family: 'Raleway', sans-serif;
   font-size: 1rem;
   line-height: 1.6;
-  background-color: rgba(226, 232, 235, 0.329);
+  background-color: #fafafa;
   color: #333;
 }
 
@@ -395,7 +395,6 @@ button {
 }
 
 .profile-top .icons a {
-  color: #fff;
   margin: 0 0.3rem;
 }
 

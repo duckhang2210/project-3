@@ -28,7 +28,27 @@ const PostItem = ({
 
       {showActions && (
         <Fragment>
-          <button
+          {auth.user._id &&
+          likes.filter(like => like.user === auth.user._id).length > 0 ? (
+            <button
+              onClick={() => removeLike(_id)}
+              type='button'
+              className='btn btn-primary'
+            >
+              <i className='fas fa-thumbs-up' />{' '}
+              <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
+            </button>
+          ) : (
+            <button
+              onClick={() => addLike(_id)}
+              type='button'
+              className='btn btn-light'
+            >
+              <i className='fas fa-thumbs-up' />{' '}
+              <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
+            </button>
+          )}
+          {/*<button
             onClick={() => addLike(_id)}
             type='button'
             className='btn btn-light'
@@ -42,7 +62,7 @@ const PostItem = ({
             className='btn btn-light'
           >
             <i className='fas fa-thumbs-down' />
-          </button>
+          </button>*/}
           <Link to={`/posts/${_id}`} className='btn btn-primary'>
             Discussion{' '}
             {comments.length > 0 && (
