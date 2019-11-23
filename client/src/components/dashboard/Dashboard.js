@@ -4,10 +4,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import DashboardActions from './DashboardActions';
-import PostForm from '../posts/PostForm';
 import ProfileTop from '../profile/ProfileTop';
 import { getCurrentProfile, deleteAccount } from '../../actions/profile';
-import PostsById from '../posts/PostsById';
+import PostByMe from '../posts/PostByMe';
 
 const Dashboard = ({
   getCurrentProfile,
@@ -43,9 +42,8 @@ const Dashboard = ({
           </Link>
         </Fragment>
       )}
-      <PostForm />
       <div className='posts'>
-        <PostsById></PostsById>
+        <PostByMe />
       </div>
     </Fragment>
   );

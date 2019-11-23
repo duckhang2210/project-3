@@ -1,5 +1,6 @@
 import {
   GET_POSTS,
+  GET_POSTS_BY_ME,
   GET_POSTS_BY_USER_ID,
   POST_ERROR,
   UPDATE_LIKES,
@@ -22,6 +23,12 @@ export default function(state = initialState, action) {
 
   switch (type) {
     case GET_POSTS:
+      return {
+        ...state,
+        posts: payload,
+        loading: false
+      };
+    case GET_POSTS_BY_ME:
       return {
         ...state,
         posts: payload,

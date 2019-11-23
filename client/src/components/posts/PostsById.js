@@ -11,10 +11,10 @@ const PostsById = ({
   auth,
   profile: { profile }
 }) => {
-  console.log(profile.user._id);
+  //console.log(profile.user._id);
   useEffect(() => {
     getPostByUserId(profile.user._id);
-  }, [getPostByUserId, profile.user._id]);
+  }, [getPostByUserId]);
 
   return loading ? (
     <Spinner />

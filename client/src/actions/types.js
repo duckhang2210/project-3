@@ -14,6 +14,7 @@ export const PROFILE_ERROR = 'PROFILE_ERROR';
 export const ACCOUNT_DELETED = 'ACCOUNT_DELETED';
 export const GET_POSTS = 'GET_POSTS';
 export const GET_POST = 'GET_POST';
+export const GET_POSTS_BY_ME = 'GET_POSTS_BY_ME';
 export const GET_POSTS_BY_USER_ID = 'GET_POSTS_BY_USER_ID';
 export const POST_ERROR = 'POST_ERROR';
 export const UPDATE_LIKES = 'UPDATE_LIKES';
