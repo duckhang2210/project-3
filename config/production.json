@@ -1,4 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://khangburn:0004@devconnector-dga5d.mongodb.net/test?retryWrites=true&w=majority",
-  "jwtSecret": "khangburnsecret"
+  "mongoURI": "",
+  "jwtSecret": ""
 }
