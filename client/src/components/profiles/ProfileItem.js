@@ -13,7 +13,7 @@ const ProfileItem = ({
     <div className='profile bg-light'>
       <img src={avatar} alt='' className='round-img' />
       <div>
-        <h2>{name}</h2>
+        <h3>{name}</h3>
 
         {workouttypes.length && (
           <p>
@@ -29,7 +29,7 @@ const ProfileItem = ({
         )}
       </div>
       <div>
-        <Link to={`/profile/${_id}`} className='btn btn-primary'>
+        <Link to={`/profile/${_id}`} className='btn btn-gradient'>
           View <span className='hide-sm'>Profile</span>
         </Link>
       </div>

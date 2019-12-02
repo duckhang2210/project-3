@@ -23,7 +23,7 @@ const Dashboard = ({
     <Spinner />
   ) : (
     <Fragment>
-      <h1 className='large text-primary'>Dashboard</h1>
+      <h1 className='text-primary'>Dashboard</h1>
       {profile !== null ? (
         <Fragment>
           <DashboardActions />
@@ -37,7 +37,7 @@ const Dashboard = ({
       ) : (
         <Fragment>
           <p>Let setup your profile so other people can know more about you</p>
-          <Link to='/create-profile' className='btn btn-primary my-1'>
+          <Link to='/create-profile' className='btn btn-gradient my-1'>
             Create Profile
           </Link>
         </Fragment>

@@ -16,7 +16,7 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
         <Spinner />
       ) : (
         <Fragment>
-          <h1 className='large text-primary'>Fitness Lovers</h1>
+          <h1 className='text-primary'>Fitness Lovers</h1>
           <div className='profiles'>
             {profiles.length > 0 ? (
               profiles.map(profile => (

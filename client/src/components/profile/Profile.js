@@ -43,7 +43,7 @@ const Profile = ({
             <div className='profile-grid my-1'>
               <ProfileTop profile={profile} />
             </div>
-            <h1 className='large text-primary'>Posts</h1>
+            <h1 className='text-primary'>Posts</h1>
             <div className='posts'>
               {posts.map(post => (
                 <PostItem key={post._id} post={post} />

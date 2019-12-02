@@ -33,7 +33,7 @@ const PostItem = ({
             <button
               onClick={() => removeLike(_id)}
               type='button'
-              className='btn btn-primary'
+              className='btn btn-gradient'
             >
               <i className='fas fa-thumbs-up' />{' '}
               <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
@@ -48,22 +48,8 @@ const PostItem = ({
               <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
             </button>
           )}
-          {/*<button
-            onClick={() => addLike(_id)}
-            type='button'
-            className='btn btn-light'
-          >
-            <i className='fas fa-thumbs-up' />{' '}
-            <span>{likes.length > 0 && <span>{likes.length}</span>}</span>
-          </button>
-          <button
-            onClick={() => removeLike(_id)}
-            type='button'
-            className='btn btn-light'
-          >
-            <i className='fas fa-thumbs-down' />
-          </button>*/}
-          <Link to={`/posts/${_id}`} className='btn btn-primary'>
+
+          <Link to={`/posts/${_id}`} className='btn btn-gradient'>
             Discussion{' '}
             {comments.length > 0 && (
               <span className='comment-count'>{comments.length}</span>
