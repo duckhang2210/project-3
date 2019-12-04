@@ -15,7 +15,23 @@ router.get('/', auth, async (req, res) => {
     const conversations = await Conversation.find({ participants: req.user.id })
       .select('_id')
       .sort({ date: -1 });
-    res.json(conversations);
+
+    let fullConversations = [];
+    conversations.forEach(function(conversation) {
+      Message.find({ conversationId: conversation._id })
+        .sort('-createdAt')
+        .limit(1)
+        .populate('user', ['name', 'avatar'])
+        .exec(function(err, message) {
+          if (err) {
+            res.send({ error: err });
+          }
+          fullConversations.push(message);
+          if (fullConversations.length === conversations.length) {
+            return res.status(200).json({ conversations: fullConversations });
+          }
+        });
+    });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
