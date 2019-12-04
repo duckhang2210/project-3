@@ -17,7 +17,7 @@ router.get('/', auth, async (req, res) => {
       .sort({ date: -1 });
 
     let fullConversations = [];
-    conversations.forEach(function(conversation) {
+    conversations.map(function(conversation) {
       Message.find({ conversationId: conversation._id })
         .sort('-createdAt')
         .limit(1)
@@ -26,9 +26,9 @@ router.get('/', auth, async (req, res) => {
           if (err) {
             res.send({ error: err });
           }
-          fullConversations.push(message);
+          fullConversations.push(message[0]);
           if (fullConversations.length === conversations.length) {
-            return res.status(200).json({ conversations: fullConversations });
+            return res.status(200).json(fullConversations);
           }
         });
     });
