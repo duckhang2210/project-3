@@ -7,6 +7,21 @@ const Message = require('../../models/Message');
 const Conversation = require('../../models/Conversation');
 const User = require('../../models/User');
 
+// @route    GET api/chat/
+// @desc     Get all conversations
+// @access   Private
+router.get('/', auth, async (req, res) => {
+  try {
+    const conversations = await Conversation.find({ participants: req.user.id })
+      .select('_id')
+      .sort({ date: -1 });
+    res.json(conversations);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 // @route    POST api/chat/new/:receiverID
 // @desc     Send a message to :receiverID
 // @access   Private
