@@ -13,7 +13,12 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
       <li>
         <Link to='/posts'>Posts</Link>
       </li>
-
+      <li>
+        <Link to='/chat'>
+          <i className='fas fa-inbox'></i>{' '}
+          <span className='hide-sm'>Inbox</span>
+        </Link>
+      </li>
       <li>
         <Link to='/register'>
           <i className='fas fa-user'></i>{' '}
