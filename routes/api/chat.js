@@ -38,6 +38,28 @@ router.get('/', auth, async (req, res) => {
   }
 });
 
+// @route    GET api/chat/:conversationId
+// @desc     Get a specific conversation and its messages
+// @access   Private
+router.get('/:conversationId', auth, async (req, res) => {
+  try {
+    await Message.find({ conversationId: req.params.conversationId })
+      .select('createdAt body author')
+      .sort('-createdAt')
+      .populate('user', ['name', 'avatar'])
+      .exec(function(err, messages) {
+        if (err) {
+          res.send({ error: err });
+        }
+
+        res.status(200).json({ conversation: messages });
+      });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 // @route    POST api/chat/new/:receiverID
 // @desc     Send a message to :receiverID
 // @access   Private
