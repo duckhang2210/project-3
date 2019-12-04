@@ -1,0 +1,104 @@
+const express = require('express');
+const router = express.Router();
+const { check, validationResult } = require('express-validator');
+const auth = require('../../middleware/auth');
+
+const Message = require('../../models/Message');
+const Conversation = require('../../models/Conversation');
+const User = require('../../models/User');
+
+// @route    POST api/chat/new/:receiverID
+// @desc     Send a message to :receiverID
+// @access   Private
+router.post(
+  '/new/:id',
+  [
+    auth,
+    [
+      check('body', 'please say something')
+        .not()
+        .isEmpty()
+    ]
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    if (!req.params.id) {
+      return res
+        .status(422)
+        .send({ error: 'Please choose a valid recipient for your message.' });
+    }
+
+    try {
+      const newConversation = new Conversation({
+        participants: [req.user.id, req.params.id]
+      });
+      const conversation = await newConversation.save();
+
+      const user = await User.findById(req.user.id).select('-password');
+
+      const newMessage = new Message({
+        conversationId: conversation._id,
+        body: req.body.body,
+        author: req.user._id,
+        avatar: user.avatar,
+        name: user.name
+      });
+
+      const message = await newMessage.save();
+
+      res.json(message);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
+  }
+);
+
+// @route    POST api/chat/:conversationID
+// @desc     Reply a message from :conversationID
+// @access   Private
+router.post(
+  '/:conversationId',
+  [
+    auth,
+    [
+      check('body', 'please say something')
+        .not()
+        .isEmpty()
+    ]
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+    if (!req.params.conversationId) {
+      return res
+        .status(422)
+        .send({ error: 'This conversation is not existed' });
+    }
+
+    try {
+      const user = await User.findById(req.user.id).select('-password');
+
+      const newReply = new Message({
+        conversationId: req.params.conversationId,
+        body: req.body.body,
+        author: req.user._id,
+        avatar: user.avatar,
+        name: user.name
+      });
+
+      const reply = await newReply.save();
+      res.json(reply);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
+  }
+);
+
+module.exports = router;
