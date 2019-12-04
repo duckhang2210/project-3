@@ -25,6 +25,12 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
+socketEvents = require('./config/socketEvents');
+
 const PORT = process.env.PORT || 5000;
+
+const server = require('http').createServer(app);
+const io = require('socket.io').listen(server);
+socketEvents(io);
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
