@@ -44,7 +44,6 @@ router.get('/', auth, async (req, res) => {
 router.get('/:conversationId', auth, async (req, res) => {
   try {
     await Message.find({ conversationId: req.params.conversationId })
-      .select('createdAt body author')
       .sort('-createdAt')
       .populate('user', ['name', 'avatar'])
       .exec(function(err, messages) {
@@ -52,7 +51,7 @@ router.get('/:conversationId', auth, async (req, res) => {
           res.send({ error: err });
         }
 
-        res.status(200).json({ conversation: messages });
+        res.status(200).json(messages);
       });
   } catch (err) {
     console.error(err.message);
