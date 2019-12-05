@@ -44,7 +44,7 @@ router.get('/', auth, async (req, res) => {
 router.get('/:conversationId', auth, async (req, res) => {
   try {
     await Message.find({ conversationId: req.params.conversationId })
-      .sort('-createdAt')
+      .sort('createdAt')
       .populate('user', ['name', 'avatar'])
       .exec(function(err, messages) {
         if (err) {
