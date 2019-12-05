@@ -28,6 +28,12 @@ export default function(state = initialState, action) {
         messages: payload,
         loading: false
       };
+    case REPLY_MESSAGE:
+      return {
+        ...state,
+        conversation: { ...state.conversation, messages: payload },
+        loading: false
+      };
     case CHAT_ERROR:
       return {
         ...state,

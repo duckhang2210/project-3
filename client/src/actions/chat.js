@@ -40,3 +40,30 @@ export const getConversation = id => async dispatch => {
     });
   }
 };
+
+// Reply message
+export const replyMessage = (conversationId, formData) => async dispatch => {
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
+
+  try {
+    const res = await axios.post(
+      `/api/chat/${conversationId}`,
+      formData,
+      config
+    );
+
+    dispatch({
+      type: REPLY_MESSAGE,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: CHAT_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};

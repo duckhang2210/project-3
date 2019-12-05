@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addComment } from '../../actions/post';
+import { replyMessage } from '../../actions/chat';
 
-const CommentForm = ({ postId, addComment }) => {
+const ChatForm = ({ conversationId, replyMessage }) => {
   const [body, setBody] = useState('');
 
   return (
@@ -12,17 +12,17 @@ const CommentForm = ({ postId, addComment }) => {
         className='form my-1'
         onSubmit={e => {
           e.preventDefault();
-          addComment(postId, { text });
-          setText('');
+          replyMessage(conversationId, { body });
+          setBody('');
         }}
       >
         <textarea
-          name='text'
+          name='body'
           cols='30'
           rows='5'
-          placeholder='Create a comment'
-          value={text}
-          onChange={e => setText(e.target.value)}
+          placeholder='Say something, do not just seen!!'
+          value={body}
+          onChange={e => setBody(e.target.value)}
           required
         />
         <input type='submit' className='btn btn-dark my-1' value='Submit' />
@@ -31,8 +31,8 @@ const CommentForm = ({ postId, addComment }) => {
   );
 };
 
-CommentForm.propTypes = {
-  addComment: PropTypes.func.isRequired
+ChatForm.propTypes = {
+  replyMessage: PropTypes.func.isRequired
 };
 
-export default connect(null, { addComment })(CommentForm);
+export default connect(null, { replyMessage })(ChatForm);

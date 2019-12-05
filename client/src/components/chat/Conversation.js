@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Spinner from '../layout/Spinner';
 import ChatItem from './ChatItem';
+import ChatForm from './ChatForm';
 import { getConversation } from '../../actions/chat';
 
 const Conversation = ({
@@ -28,6 +29,7 @@ const Conversation = ({
           />
         ))}
       </div>
+      <ChatForm conversationId={messages[0].conversationId} />
     </Fragment>
   );
 };
