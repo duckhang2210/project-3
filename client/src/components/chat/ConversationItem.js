@@ -5,7 +5,7 @@ import Moment from 'react-moment';
 import { connect } from 'react-redux';
 
 const ConversationItem = ({
-  conversation: { body, name, avatar, user, date }
+  conversation: { body, name, avatar, user, updatedAt, conversationId }
 }) => (
   <div className='post bg-white p-1 my-1'>
     <div>
@@ -14,12 +14,12 @@ const ConversationItem = ({
         <h4>{name}</h4>
       </Link>
     </div>
-    <div>
+    <Link to={`/chat/${conversationId}`}>
       <p className='my-1'>{body}</p>
       <p className='post-date'>
-        Posted on <Moment format='YYYY/MM/DD'>{date}</Moment>
+        Posted on <Moment format='YYYY/MM/DD HH:mm'>{updatedAt}</Moment>
       </p>
-    </div>
+    </Link>
   </div>
 );
 

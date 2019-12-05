@@ -23,3 +23,20 @@ export const getConversations = () => async dispatch => {
     });
   }
 };
+
+//Get specific conversation by Id
+export const getConversation = id => async dispatch => {
+  try {
+    const res = await axios.get(`/api/chat/${id}`);
+
+    dispatch({
+      type: GET_CONVERSATION,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: CHAT_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
