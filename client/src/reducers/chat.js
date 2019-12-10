@@ -8,6 +8,7 @@ import {
 
 const initialState = {
   conversations: [],
+  conversationId: null,
   messages: null,
   loading: true,
   error: {}
@@ -32,6 +33,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         conversation: { ...state.conversation, messages: payload },
+        loading: false
+      };
+    case SEND_NEW_MESSAGE:
+      return {
+        ...state,
+        conversation: { ...state.conversation, conversationId: payload },
         loading: false
       };
     case CHAT_ERROR:

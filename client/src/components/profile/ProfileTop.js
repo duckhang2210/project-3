@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 const ProfileTop = ({
   profile: {
@@ -13,6 +14,9 @@ const ProfileTop = ({
   return (
     <div className='profile-top bg-light'>
       <img className='round-img my-1' src={avatar} alt='' />
+      <Link to='/chat/'>
+        <i className='far fa-envelope fa-2x'></i>
+      </Link>
       <div className='my-1'>
         <h1>{name}</h1>
         <q>{bio}</q>

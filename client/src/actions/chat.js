@@ -67,3 +67,20 @@ export const replyMessage = (conversationId, formData) => async dispatch => {
     });
   }
 };
+
+// Send new message
+export const newMessage = receiverId => async dispatch => {
+  try {
+    const res = await axios.post(`/api/chat/new/${receiverId}`);
+
+    dispatch({
+      type: SEND_NEW_MESSAGE,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: CHAT_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
