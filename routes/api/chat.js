@@ -64,47 +64,36 @@ router.get('/:conversationId', auth, async (req, res) => {
 // @access   Private
 router.post(
   '/new/:id',
-  [
-    auth,
-    [
-      check('body', 'please say something')
-        .not()
-        .isEmpty()
-    ]
-  ],
+
+  auth,
   async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
     if (!req.params.id) {
       return res
         .status(422)
         .send({ error: 'Please choose a valid recipient for your message.' });
     }
-
-    try {
-      const newConversation = new Conversation({
+    console.log(
+      Message.find({
+        participants: [req.user.id, req.params.id]
+      })
+    );
+    if (
+      Message.find({
+        participants: [req.user.id, req.params.id]
+      }) != 0
+    ) {
+      const conversationID = await Message.find({
+        participants: [req.user.id, req.params.id]
+      }).select('_id');
+      res.send(conversationID);
+    }
+    {
+      const newConversation = new Message({
         participants: [req.user.id, req.params.id]
       });
       const conversation = await newConversation.save();
 
-      const user = await User.findById(req.user.id).select('-password');
-
-      const newMessage = new Message({
-        conversationId: conversation._id,
-        body: req.body.body,
-        author: req.user._id,
-        avatar: user.avatar,
-        name: user.name
-      });
-
-      const message = await newMessage.save();
-
-      res.json(message);
-    } catch (err) {
-      console.error(err.message);
-      res.status(500).send('Server Error');
+      res.send(conversation);
     }
   }
 );
