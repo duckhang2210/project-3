@@ -12,4 +12,7 @@ A social media app for fitness lovers
 [Check out the App](https://ptyou-mern.herokuapp.com/)
 
 ## Technologies Used
-
+- MongoDB
+- Express Js
+- React, Redux, React-Hooks
+- NodeJs
