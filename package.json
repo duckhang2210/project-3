@@ -22,7 +22,7 @@
   "homepage": "https://github.com/duckhang2210/project-3#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "config": "^3.2.4",
+    "config": "^3.3.8",
     "dotenv": "^8.2.0",
     "env": "0.0.2",
     "express": "^4.17.1",
